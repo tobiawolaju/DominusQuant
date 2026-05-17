@@ -170,8 +170,8 @@ export default function ViewPager() {
 
 
                         {activeTab === "Orderbook" && (
-                            <div className="w-full h-full flex flex-col bg-abyss text-white/90 pt-12 px-4 sm:px-6 pb-24 select-none overflow-hidden">
-                                <div className="flex min-h-0 flex-[1.05] flex-col overflow-hidden rounded-[28px] border border-white/5 bg-white/[0.015] px-3 py-3">
+                            <div className="w-full h-full flex flex-col bg-abyss text-white/90 pt-12 px-4 sm:px-6 pb-24 select-none overflow-y-auto scrollbar-hide">
+                                <div className="flex h-[40vh] min-h-[40vh] shrink-0 flex-col overflow-hidden rounded-[28px] border border-white/5 bg-white/[0.015] px-3 py-3">
                                     {/* Orderbook Header */}
                                     <div className="flex justify-between items-center pb-3 border-b border-white/5 text-[10px] font-black text-white/30 tracking-[0.2em] uppercase shrink-0">
                                         <span className="w-1/3 text-left">Price (USD)</span>
@@ -247,7 +247,7 @@ export default function ViewPager() {
                                     </div>
                                 </div>
 
-                                <div className="mt-3 flex min-h-0 flex-[0.95] flex-col overflow-hidden rounded-[28px] border border-white/5 bg-white/[0.02] p-3 shadow-[0_18px_45px_rgba(0,0,0,0.28)]">
+                                <div className="mt-3 flex min-h-[18rem] flex-1 shrink-0 flex-col overflow-hidden rounded-[28px] border border-white/5 bg-white/[0.02] p-3 shadow-[0_18px_45px_rgba(0,0,0,0.28)]">
                                     <div className="grid w-full grid-cols-2 gap-2 rounded-full bg-white/[0.03] p-1 border border-white/5 shrink-0">
                                         {orderPanelTabs.map((tab) => (
                                             <button
