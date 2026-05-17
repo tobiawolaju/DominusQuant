@@ -1,9 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
-import { usePrivy } from "@privy-io/react-auth";
 
 const SPLASH_IMAGES = [
     "/splash/Layer_1_TheMajorBackground_FurthestBack.png",
@@ -14,17 +13,31 @@ const SPLASH_IMAGES = [
 ];
 
 export default function SplashScreen() {
+    const [isVisible, setIsVisible] = useState(true);
     const [imagesLoaded, setImagesLoaded] = useState(false);
-    const loadedCountRef = useRef(0);
-    const { login, authenticated, ready } = usePrivy();
-    const isVisible = !authenticated;
+    const [loadedCount, setLoadedCount] = useState(0);
 
     const handleImageLoad = useCallback(() => {
-        loadedCountRef.current += 1;
-        if (loadedCountRef.current >= SPLASH_IMAGES.length) {
-            setImagesLoaded(true);
-        }
+        setLoadedCount(prev => {
+            const next = prev + 1;
+            if (next >= SPLASH_IMAGES.length) {
+                setImagesLoaded(true);
+            }
+            return next;
+        });
     }, []);
+
+    // Start the dismiss timer only after all images are loaded
+    useEffect(() => {
+        if (!imagesLoaded) return;
+        // Auto-dismiss after 4.5 seconds
+        const timer = setTimeout(() => setIsVisible(false), 6500);
+        return () => clearTimeout(timer);
+    }, [imagesLoaded]);
+
+    const handleStartTrading = () => {
+        setIsVisible(false);
+    };
 
     return (
         <AnimatePresence>
@@ -145,14 +158,6 @@ export default function SplashScreen() {
                             <p className="text-sm md:text-base text-white/60 max-w-md mx-auto leading-relaxed">
                                 Quants-Native Trading Platform
                             </p>
-                            <button
-                                type="button"
-                                onClick={() => login()}
-                                disabled={!ready}
-                                className="px-6 py-3 rounded-full font-bold text-sm tracking-wide bg-neon hover:bg-neon-dim disabled:opacity-60 disabled:cursor-not-allowed text-white transition-colors shadow-lg shadow-neon/20"
-                            >
-                                {!ready ? "Loading..." : "Connect Wallet"}
-                            </button>
                         </motion.div>
                     </div>
 

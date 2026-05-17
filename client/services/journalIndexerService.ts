@@ -1,7 +1,7 @@
 /**
  * journalIndexerService
  * 
- * NOTE: This service was originally built for Solana/Dominus.
+ * NOTE: This service was originally built for Solana/Deriverse.
  * It's temporarily stubbed for the Monad migration.
  * The journal still works via mock data in mockData.ts.
  * 
@@ -9,7 +9,7 @@
  * wallet integration is added.
  */
 
-import { IndexerTrade } from '../types/dominus';
+import { IndexerTrade } from '../types/deriverse';
 
 export const journalIndexerService = {
     /**
