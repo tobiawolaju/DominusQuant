@@ -1,12 +1,13 @@
 import { create } from "zustand";
-import { IndexerTrade } from "../types/dominus";
+import { IndexerTrade } from "../types/deriverse";
 import { MarketEntry } from "../types/token";
 import { analyticsService } from "../services/analyticsService";
+import { journalEntries } from "./mockData"; // Initial fallback for journal
 import { FALLBACK_MARKETS } from "./monadTokens";
 
 export type TabType = "Chart" | "Orderbook" | "Wallet";
 
-interface DominusState {
+interface DeriverseState {
     activeTab: TabType;
     setActiveTab: (tab: TabType) => void;
 
@@ -40,7 +41,10 @@ interface DominusState {
     setAvailableMarkets: (markets: MarketEntry[]) => void;
 }
 
-export const useDominusStore = create<DominusState>((set, get) => ({
+// Initial metrics structure
+const initialMetrics = analyticsService.computeMetrics([]);
+
+export const useDeriverseStore = create<DeriverseState>((set, get) => ({
     activeTab: "Chart",
     setActiveTab: (tab) => set({ activeTab: tab }),
 
@@ -64,14 +68,14 @@ export const useDominusStore = create<DominusState>((set, get) => ({
 
     // Analytics Implementation
     trades: [],
-    metrics: analyticsService.computeMetrics([] as any),
+    metrics: analyticsService.computeMetrics(journalEntries as any),
     setTrades: (trades) => {
         const metrics = analyticsService.computeMetrics(trades);
         set({ trades, metrics });
     },
     refreshAnalytics: () => {
         const { trades } = get();
-        const metrics = analyticsService.computeMetrics(trades.length > 0 ? trades : [] as any);
+        const metrics = analyticsService.computeMetrics(trades.length > 0 ? trades : journalEntries as any);
         set({ metrics });
     },
 

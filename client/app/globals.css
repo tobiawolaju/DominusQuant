@@ -36,16 +36,19 @@
     overflow-x: hidden;
   }
 
-  /* Hide scrollbars while preserving scroll behavior */
-  * {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
   }
-
-  *::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    display: none;
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-muted);
   }
 }
 

@@ -2,11 +2,11 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import * as Dialog from "@radix-ui/react-dialog";
-import { useDominusStore } from "@/lib/store";
+import { useDeriverseStore } from "@/lib/store";
 import { useEffect } from "react";
 
 export default function AIInsightModal() {
-    const { aiInsightOpen, setAiInsightOpen } = useDominusStore();
+    const { aiInsightOpen, setAiInsightOpen } = useDeriverseStore();
 
     // Prevent scrolling when open
     useEffect(() => {
@@ -74,21 +74,21 @@ export default function AIInsightModal() {
                                         <div className="space-y-2">
                                             <p className="text-white/60 text-sm uppercase tracking-widest font-bold">Execution Timing</p>
                                             <p className="text-2xl md:text-4xl font-medium text-white italic">
-                                                &ldquo;You are profitable when holding trades longer than 2 hours.&rdquo;
+                                                "You are profitable when holding trades longer than 2 hours."
                                             </p>
                                         </div>
 
                                         <div className="space-y-2">
                                             <p className="text-white/60 text-sm uppercase tracking-widest font-bold">Psychology Trap</p>
                                             <p className="text-2xl md:text-4xl font-medium text-white italic">
-                                                &ldquo;You lose 58% of trades you entered within 15 minutes of closing a previous loss.&rdquo;
+                                                "You lose 58% of trades you entered within 15 minutes of closing a previous loss."
                                             </p>
                                         </div>
 
                                         <div className="space-y-2">
                                             <p className="text-white/60 text-sm uppercase tracking-widest font-bold">Performance Decay</p>
                                             <p className="text-2xl md:text-4xl font-medium text-white italic">
-                                                &ldquo;Your win rate drops after 3 consecutive wins.&rdquo;
+                                                "Your win rate drops after 3 consecutive wins."
                                             </p>
                                         </div>
                                     </motion.div>
@@ -100,7 +100,7 @@ export default function AIInsightModal() {
                                         transition={{ delay: 0.8 }}
                                         className="mt-16 text-white/40 text-[10px] tracking-widest uppercase font-bold"
                                     >
-                                        Powered by Dominus Quant Insights
+                                        Powered by Deriverse Neural Engine
                                     </motion.p>
                                 </div>
                             </motion.div>
